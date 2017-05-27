@@ -1,0 +1,25 @@
+body {
+	background-image: url(../images/background2.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	color: lightgray;
+}	
+
+.player {
+	width: 19%;
+	height: auto;
+}
+#kuja {
+	width: 17%;
+	height: auto;
+}
+
+#garnet {
+	width: 19%;
+	height: auto;
+}
+#beatrix {
+	width: 21%;
+	height: auto;
+}
