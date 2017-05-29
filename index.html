@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>MY RPG GAME</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+	</script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <body>
@@ -10,23 +12,67 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<h1>FINAL FANTASY RPG ADVENTURE</h1>
-				<h2>Choose your character to begin...</h2>
+				
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<h2>Your character:</h2>
+				<h2 class="instructions">Click a character to choose your fighter...</h2>
+				<h2 class="instructions2">Choose an enemy to fight!</h2>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12 text-center">
-				<div class="character-display text-center">
-				<img class="player" id="zidane" src="assets/images/character1_zidane.png">
-				<img class="player" id="vivi" src="assets/images/character5_vivi.png">
-				<img class="player" id="beatrix" src="assets/images/character2_beatrix.png">
-				<img class="player" id="garnet" src="assets/images/character4_garnet.png">
-				<img class="player" id="kuja" src="assets/images/character3_kuja.png">
+			<div class="col-md-12">
+				<div class="character-display">
+					<div class="player1" id="player">
+					<div  class="zidane">
+						<img class="player-pic" id="zidane" src="assets/images/character1_zidane.png">
+						<p class="text-justify">
+						HP: <span id="zidane-points" class=" text-justify hit-points"></span>
+						</p>
+					</div>
+					</div>
+					<div class="player2" id="player">
+					<div class="vivi">
+						<img class="player-pic" id="vivi" src="assets/images/character5_vivi.png">
+						<p>
+						HP: <span id="vivi-points" class="text-justify hit-points"></span>
+						</p>
+					</div>
+					</div>
+					<div class="player3" id="player">
+					<div class="beatrix text-justify">
+						<img class="player-pic" id="beatrix" src="assets/images/character2_beatrix.png"/>
+						<p>
+						HP: <span id="beatrix-points" class="hit-points"></span>
+						</p>					
+					</div>
+					</div>
+					<div class="player4" id="player">
+					<div class="garnet text-justify">
+						<img class="player-pic" id="garnet" src="assets/images/character4_garnet.png">
+						<p>
+						HP: <span id="garnet-points" class="hit-points"></span>
+						</p>	
+					</div>
+					</div>
+					<div class="player5" id="player">
+					<div class="kuja text-justify">
+						<img class="player-pic" id="kuja" src="assets/images/character3_kuja.png">
+						<p>
+						HP: <span id="kuja-points" class="hit-points"></span>
+						</p>	
+					</div>
+					</div>
 				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3  text-center chosen-row">
+				<h2>Your character:</h2>
+				<div class="chosen-character text-justify">
+				</div>
+				<button type="button" class="attack-btn btn btn-secondary">Fight</button>
 			</div>
 		</div>
 		<div class="row">
@@ -35,7 +81,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 chosen-row">
 				<div class ="chosen-foe">
 				</div>
 			</div>
@@ -46,16 +92,132 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12 text-center">
-				<div class="enemies-display">
+			<div class="col-md-12">
+				<div class="enemies-display text-justify">
+					<div class="enemies" id="enemy1">
+					</div>
+					<div class="enemies" id="enemy2">
+					</div>
+					<div class="enemies" id="enemy3">
+					</div>
+					<div class="enemies" id="enemy4">
+					</div>
 				</div>
 			</div>
 		</div>
 		
 	</div>
+	<script type="text/javascript">
+	var characters = {
+	zidane,
+	vivi,
+	beatrix,
+	garnet,
+	kuja,
+};
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
-	</script>
+
+
+$(document).ready(function (characterselection) {
+	/*var zidaneHP = 10;
+		viviHP = 10;
+		beatrixHP = 10;
+		garnetHP = 10;
+		kujaHP = 10;*/
+	
+	
+	var zidanepoints = 10;
+	$('#zidane-points').html(zidanepoints);
+	var vivipoints = 10;
+	$('#vivi-points').html(vivipoints);
+	var beatrixpoints = 10;
+	$('#beatrix-points').html(beatrixpoints);
+	var garnetpoints = 10;
+	$('#garnet-points').html(garnetpoints);
+	var kujapoints = 10;
+	$('#kuja-points').html(kujapoints);
+	var zidaneclick = false;
+	var viviclick = false;
+	var beatrixclick = false;
+	var garnetclick = false;
+	var kujaclick = false;
+	$(".instructions2").hide();
+
+	
+// User chooses a character and the new correct screen appears.
+	$(".player1").on("click", function(){
+		zidaneclick = true;
+		console.log("User chose Zidane");
+		console.log(zidaneclick);
+		$(".vivi").appendTo("#enemy1");
+		$(".beatrix").appendTo("#enemy2");
+		$(".garnet").appendTo("#enemy3");
+		$(".kuja").appendTo("#enemy4");
+		$(".zidane").appendTo(".chosen-character");
+		$("#zidane-points").addClass("character-points");
+		$(".instructions").hide();
+		$(".instructions2").show();
+	});
+	$(".player2").on("click", function(){
+		viviclick = true;
+		console.log("User chose Vivi");
+		console.log(viviclick);
+		$(".zidane").appendTo("#enemy1");
+		$(".beatrix").appendTo("#enemy2");
+		$(".garnet").appendTo("#enemy3");
+		$(".kuja").appendTo("#enemy4");
+		$(".vivi").appendTo(".chosen-character");
+		$("#vivi-points").addClass("character-points");
+		$(".instructions").hide();
+		$(".instructions2").show();
+	});
+	$(".player3").on("click", function(){
+		beatrixclick = true;
+		console.log("User chose Beatrix");
+		console.log(beatrixclick);
+		$(".zidane").appendTo("#enemy1");
+		$(".vivi").appendTo("#enemy2");
+		$(".garnet").appendTo("#enemy3");
+		$(".kuja").appendTo("#enemy4");
+		$(".beatrix").appendTo(".chosen-character");
+		$("#beatrix-points").addClass("character-points");
+		$(".instructions").hide();
+		$(".instructions2").show();
+	});
+	$(".player4").on("click", function(){
+		garnetclick = true;
+		console.log("User chose Garnet");
+		console.log(garnetclick);
+		$(".zidane").appendTo("#enemy1");
+		$(".vivi").appendTo("#enemy2");
+		$(".beatrix").appendTo("#enemy3");
+		$(".kuja").appendTo("#enemy4");
+		$(".garnet").appendTo(".chosen-character");
+		$("#garnet-points").addClass("character-points");
+		$(".instructions").hide();
+		$(".instructions2").show();
+	});
+	$(".player5").on("click", function(){
+		kujaclick = true;
+		console.log("User chose Kuja");
+		console.log(kujaclick);
+		$(".zidane").appendTo("#enemy1");
+		$(".vivi").appendTo("#enemy2");
+		$(".beatrix").appendTo("#enemy3");
+		$(".garnet").appendTo("#enemy4");
+		$(".kuja").appendTo(".chosen-character");
+		$("#kuja-points").addClass("character-points");
+		$(".instructions").hide();
+		$(".instructions2").show();
+	});
+	$("#enemy1").on("click", function(){
+		$
+	});
+});
+</script>
+
+
+	
 
 </body>
 </html>

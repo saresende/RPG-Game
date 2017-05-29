@@ -3,23 +3,57 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
-	color: lightgray;
+	color: white;
 }	
 
-.player {
-	width: 19%;
+
+.player-pic {
+	width: 100%;
 	height: auto;
+	
+}
+.character-diplay {
+	
+	width: 100%;
+}
+#player {
+	width: 19%;
+	display: inline-block;
+	
 }
 #kuja {
-	width: 17%;
+	height: 300px;
+	width: auto;
+}
+#garnet {
+	height: 260px;
+	width: auto;
+	
+}
+.enemies-display {
+	width: 100%;
+}
+.enemies {
+	width: 24.5%;
 	height: auto;
+	display: inline-block;
 }
 
-#garnet {
-	width: 19%;
-	height: auto;
-}
 #beatrix {
-	width: 21%;
-	height: auto;
+	width: auto;
+	height: 267px;
+}
+
+#zidane{
+	width: auto;
+	height: 251px;
+}
+
+#vivi {
+	width: auto;
+	height: 233px;
+}
+.chosen-row {
+	float: none;
+	margin: 0 auto;
 }
