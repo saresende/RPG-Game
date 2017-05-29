@@ -81,8 +81,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12 chosen-row">
-				<div class ="chosen-foe">
+			<div class="col-md-3 text-center chosen-row">
+				<div id="foe" class ="chosen-foe text-justify">
 				</div>
 			</div>
 		</div>
@@ -108,46 +108,75 @@
 		
 	</div>
 	<script type="text/javascript">
-	var characters = {
-	zidane,
-	vivi,
-	beatrix,
-	garnet,
-	kuja,
-};
+	//var enemy1 = $("#enemy1");
+	//	enemy2 = $("#enemy2");
+	//	enemy3 = $("#enemy3");
+	//	enemy4 = $("#enemy4");
 
+$(document).ready(function () {
+	var zidane = {
+		name: "Zidane",
+		attack: 2,
+		health: [10],
+	}
+	var vivi = {
+		name: "Vivi",
+		attack: 2,
+		health: [10],
+	}
+	var beatrix = {
+		name: "Beatrix",
+		attack: 2,
+		health: [10],
+	}
+	var garnet = {
+		name: "Garnet",
+		attack: 2,
+		health: [10],
+	}
+	var kuja = {
+		name: "Kuja",
+		attack: 2,
+		health: [10],
+	}
+	var chosenplayer = {
+		name: "",
+		attack: "",
+		health: "",
+	}
+	var chosenenemy = {
+		name: "",
+		attack: "",
+		health: "",
+	}
+		var characters = [zidane, vivi, beatrix, garnet, kuja];
+		var chosencharacter = [];
+		var chosenfoe = [];
+		var enemies = [];
+		$('#zidane-points').html(zidane.health[0]);
+		$('#vivi-points').html(vivi.health[0]);
+		$('#beatrix-points').html(beatrix.health[0]);
+		$('#garnet-points').html(garnet.health[0]);
+		$('#kuja-points').html(kuja.health[0]);
+		$('.zidane').data(zidane);
+		var selectedcharacter = false;
+		var selectedenemy = false;
+		$('.instructions2').hide();
+	function intitializeGame () {
+		
 
-
-$(document).ready(function (characterselection) {
-	/*var zidaneHP = 10;
-		viviHP = 10;
-		beatrixHP = 10;
-		garnetHP = 10;
-		kujaHP = 10;*/
-	
-	
-	var zidanepoints = 10;
-	$('#zidane-points').html(zidanepoints);
-	var vivipoints = 10;
-	$('#vivi-points').html(vivipoints);
-	var beatrixpoints = 10;
-	$('#beatrix-points').html(beatrixpoints);
-	var garnetpoints = 10;
-	$('#garnet-points').html(garnetpoints);
-	var kujapoints = 10;
-	$('#kuja-points').html(kujapoints);
-	var zidaneclick = false;
-	var viviclick = false;
-	var beatrixclick = false;
-	var garnetclick = false;
-	var kujaclick = false;
-	$(".instructions2").hide();
+	}
 
 	
 // User chooses a character and the new correct screen appears.
-	$(".player1").on("click", function(){
+	$("#player").on("click", function(){
+		$(this).appendTo(".chosen-character");
+		console.log(this.id);
+	
+	})
+	/*$(".player1").on("click", function(){
 		zidaneclick = true;
-		console.log("User chose Zidane");
+		console.log("User chose: " + zidane.name);
 		console.log(zidaneclick);
 		$(".vivi").appendTo("#enemy1");
 		$(".beatrix").appendTo("#enemy2");
@@ -157,6 +186,7 @@ $(document).ready(function (characterselection) {
 		$("#zidane-points").addClass("character-points");
 		$(".instructions").hide();
 		$(".instructions2").show();
+		round1();
 	});
 	$(".player2").on("click", function(){
 		viviclick = true;
@@ -170,6 +200,7 @@ $(document).ready(function (characterselection) {
 		$("#vivi-points").addClass("character-points");
 		$(".instructions").hide();
 		$(".instructions2").show();
+		round1();
 	});
 	$(".player3").on("click", function(){
 		beatrixclick = true;
@@ -183,6 +214,7 @@ $(document).ready(function (characterselection) {
 		$("#beatrix-points").addClass("character-points");
 		$(".instructions").hide();
 		$(".instructions2").show();
+		round1();
 	});
 	$(".player4").on("click", function(){
 		garnetclick = true;
@@ -196,6 +228,7 @@ $(document).ready(function (characterselection) {
 		$("#garnet-points").addClass("character-points");
 		$(".instructions").hide();
 		$(".instructions2").show();
+		round1();
 	});
 	$(".player5").on("click", function(){
 		kujaclick = true;
@@ -209,13 +242,42 @@ $(document).ready(function (characterselection) {
 		$("#kuja-points").addClass("character-points");
 		$(".instructions").hide();
 		$(".instructions2").show();
-	});
-	$("#enemy1").on("click", function(){
-		$
-	});
-});
-</script>
+		round1();
 
+	});
+	$(".enemies").on("click", function round1() {
+	//for (var i = 0; i < enemies.length; i++)
+		//console.log("User chose" + enemies[i] + "as enemy");
+		console.log(this.id);
+			if (firstenemydefeat != true) {
+				$(this).appendTo('.chosen-foe');
+				$("#foe").toggleClass('chosen-foe first-foe');
+			}
+			else if (firstenemydefeat = true) {
+					$(this).appendTo('.first-foe');
+					$("#foe").toggleClass('first-foe second-foe');
+				}
+			else if (secondenemydefeat = true) {
+					$(this).appendTo('.second-foe');
+					$("#foe").toggleClass('second-foe third-foe');
+				}
+			else if (thirdenemydefeat = true) {
+					$(this).appendTo('.third-foe');
+					$("#foe").toggleClass('third-foe fourth-foe');
+				}
+			if (fourthenemydefeat == true) {
+
+			}
+			});*/
+	
+
+	});
+	
+	
+
+
+
+</script>
 
 	
 
