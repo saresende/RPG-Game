@@ -82,8 +82,8 @@
 		</div>
 		<div class="row">
 			<div class="col-md-3 text-center chosen-row">
-				<div id="foe" class ="chosen-foe text-justify">
-				</div>
+				<span id="foe" class ="chosen-foe text-justify">
+				</span>
 			</div>
 		</div>
 		<div class="row">
@@ -161,6 +161,10 @@ $(document).ready(function () {
 		$('.zidane').data(zidane);
 		var selectedcharacter = false;
 		var selectedenemy = false;
+		var firstenemydefeat = false;
+		var secondenemydefeat = false;
+		var thirdenemydefeat = false;
+		var fourthenemydefeat = false;
 		$('.instructions2').hide();
 	function intitializeGame () {
 		
@@ -169,12 +173,12 @@ $(document).ready(function () {
 
 	
 // User chooses a character and the new correct screen appears.
-	$("#player").on("click", function(){
+	/*$("#player").on("click", function(){
 		$(this).appendTo(".chosen-character");
 		console.log(this.id);
 	
-	})
-	/*$(".player1").on("click", function(){
+	})*/
+	$(".player1").on("click", function(){
 		zidaneclick = true;
 		console.log("User chose: " + zidane.name);
 		console.log(zidaneclick);
@@ -184,9 +188,14 @@ $(document).ready(function () {
 		$(".kuja").appendTo("#enemy4");
 		$(".zidane").appendTo(".chosen-character");
 		$("#zidane-points").addClass("character-points");
+		$('.chosen-character').addClass('zidane');
+		$('#enemy1').addClass('vivi');
+		$('#enemy2').addClass('beatrix');
+		$('#enemy3').addClass('garnet');
+		$('#enemy4').addClass('kuja');
 		$(".instructions").hide();
 		$(".instructions2").show();
-		round1();
+		
 	});
 	$(".player2").on("click", function(){
 		viviclick = true;
@@ -198,9 +207,14 @@ $(document).ready(function () {
 		$(".kuja").appendTo("#enemy4");
 		$(".vivi").appendTo(".chosen-character");
 		$("#vivi-points").addClass("character-points");
+		$('.chosen-character').addClass('vivi');
+		$('#enemy1').addClass('zidane');
+		$('#enemy2').addClass('beatrix');
+		$('#enemy3').addClass('garnet');
+		$('#enemy4').addClass('kuja');
 		$(".instructions").hide();
 		$(".instructions2").show();
-		round1();
+		
 	});
 	$(".player3").on("click", function(){
 		beatrixclick = true;
@@ -212,9 +226,14 @@ $(document).ready(function () {
 		$(".kuja").appendTo("#enemy4");
 		$(".beatrix").appendTo(".chosen-character");
 		$("#beatrix-points").addClass("character-points");
+		$('.chosen-character').addClass('beatrix');
+		$('#enemy1').addClass('zidane');
+		$('#enemy2').addClass('vivi');
+		$('#enemy3').addClass('garnet');
+		$('#enemy4').addClass('kuja');
 		$(".instructions").hide();
 		$(".instructions2").show();
-		round1();
+		
 	});
 	$(".player4").on("click", function(){
 		garnetclick = true;
@@ -226,9 +245,14 @@ $(document).ready(function () {
 		$(".kuja").appendTo("#enemy4");
 		$(".garnet").appendTo(".chosen-character");
 		$("#garnet-points").addClass("character-points");
+		$('.chosen-character').addClass('garnet');
+		$('#enemy1').addClass('zidane');
+		$('#enemy2').addClass('vivi');
+		$('#enemy3').addClass('beatrix');
+		$('#enemy4').addClass('kuja');
 		$(".instructions").hide();
 		$(".instructions2").show();
-		round1();
+		
 	});
 	$(".player5").on("click", function(){
 		kujaclick = true;
@@ -240,12 +264,18 @@ $(document).ready(function () {
 		$(".garnet").appendTo("#enemy4");
 		$(".kuja").appendTo(".chosen-character");
 		$("#kuja-points").addClass("character-points");
+		$('.chosen-character').addClass('kuja');
+		$('#enemy1').addClass('zidane');
+		$('#enemy2').addClass('vivi');
+		$('#enemy3').addClass('beatrix');
+		$('#enemy4').addClass('garnet');
 		$(".instructions").hide();
 		$(".instructions2").show();
-		round1();
+		
 
 	});
 	$(".enemies").on("click", function round1() {
+		$('#foe').html(chosenfoe);
 	//for (var i = 0; i < enemies.length; i++)
 		//console.log("User chose" + enemies[i] + "as enemy");
 		console.log(this.id);
@@ -253,22 +283,25 @@ $(document).ready(function () {
 				$(this).appendTo('.chosen-foe');
 				$("#foe").toggleClass('chosen-foe first-foe');
 			}
-			else if (firstenemydefeat = true) {
+			 if (firstenemydefeat = true) {
 					$(this).appendTo('.first-foe');
 					$("#foe").toggleClass('first-foe second-foe');
 				}
-			else if (secondenemydefeat = true) {
+			if (secondenemydefeat = true) {
 					$(this).appendTo('.second-foe');
 					$("#foe").toggleClass('second-foe third-foe');
 				}
-			else if (thirdenemydefeat = true) {
+			if (thirdenemydefeat = true) {
 					$(this).appendTo('.third-foe');
 					$("#foe").toggleClass('third-foe fourth-foe');
 				}
 			if (fourthenemydefeat == true) {
 
 			}
-			});*/
+			else {
+				return;
+			}
+			});
 	
 
 	});
